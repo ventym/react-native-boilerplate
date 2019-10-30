@@ -5,12 +5,12 @@ interface IUseTimerResult {
     stopTimer: () => void;
 }
 
-const useTimer = (onTimer: () => void, timeout: number, immediatelyStart: boolean = true): IUseTimerResult => {
+const useTimer = (onTimer: () => void, delay: number, immediatelyStart: boolean = true): IUseTimerResult => {
     const timerId = useRef<NodeJS.Timeout>();
 
     const startTimer = useCallback(() => {
-        timerId.current = setTimeout(onTimer, timeout);
-    }, [onTimer, timeout]);
+        timerId.current = setTimeout(onTimer, delay);
+    }, [onTimer, delay]);
 
     const stopTimer = useCallback(() => {
         if (timerId.current !== undefined) clearTimeout(timerId.current);
