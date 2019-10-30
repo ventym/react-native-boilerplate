@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { useSafeArea } from 'react-native-safe-area-context';
 
 import { IState, IAppMessage } from 'app/state/types';
-import AppMessageItem from 'app/components/AppMessageItem';
+import AppMessageItem from './Item';
 
 const AppMessageLayout: React.FC = (props) => {
     const messageList = useSelector<IState, IAppMessage[]>(state => state.appMessage.list);
