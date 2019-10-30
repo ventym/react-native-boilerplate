@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     itemSeparator: {
         width: '100%',
         height: StyleSheet.hairlineWidth,
-        backgroundColor: 'gray',
+        backgroundColor: 'silver',
+        marginLeft: 12,
     },
 });
