@@ -23,6 +23,7 @@ const SettingsScreen: React.FC = () => {
             style={styles.screenContainer}
             contentContainerStyle={styles.contentContainer}
         >
+            {/* <View style={{ height: 300 }}/> */}
             <TouchableOpacity onPress={changeLanguage}>
                 <Text style={styles.link}>{t('changeLanguage')}</Text>
             </TouchableOpacity>

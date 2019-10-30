@@ -4,6 +4,7 @@ import { ThunkAction } from 'redux-thunk';
 import actions from 'app/actions';
 import { IState } from 'app/state/types';
 import { default as apiFetchBlablaList } from 'app/api/fetchBlablaList';
+import i18n from 'app/i18n';
 
 const fetchBlablaList = (): ThunkAction<Promise<void>, IState, {}, AnyAction> => async (dispatch) => {
     dispatch(actions.blabla.fetchListStarted());
@@ -15,11 +16,11 @@ const fetchBlablaList = (): ThunkAction<Promise<void>, IState, {}, AnyAction> =>
     } else {
         dispatch(actions.appMessage.add({
             type: 'ERROR',
-            text: 'Внимание! При плохом интернете работоспособность приложения может быть нарушена!',
+            text: i18n.t('AppMessage:sampleError'),
         }));
         dispatch(actions.appMessage.add({
             type: 'WARN',
-            text: 'Не удалось загрузить данные',
+            text: i18n.t('AppMessage:cannotFetchBlablaList'),
         }));
         dispatch(actions.blabla.fetchListFailed());
     }

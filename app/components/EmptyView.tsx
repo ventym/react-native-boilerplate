@@ -12,6 +12,6 @@ export default EmptyView;
 const styles = StyleSheet.create({
     screenContainer: {
         flex: 1,
-        // backgroundColor: 'white',
+        backgroundColor: 'aliceblue',
     },
 });

@@ -1,7 +1,8 @@
 export default {
     AppMessage: {
-        cannotOpenEmail: 'Can not send email',
-        cannotFetchClientList: 'Can not fetch client list',
+        cannotOpenEmail: 'Не удалось отправить письмо',
+        cannotFetchBlablaList: 'Не удалось загрузить данные',
+        sampleError: 'Внимание! При плохом интернете работоспособность приложения может быть нарушена!',
     },
     tabBar: {
         blablaList: 'Клиенты',
