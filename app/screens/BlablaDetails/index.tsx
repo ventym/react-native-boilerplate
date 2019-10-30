@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     StyleSheet,
-    View,
+    // View,
     Text,
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -25,7 +25,7 @@ const BlablaDetails: React.FC = () => {
 
     return (
         <ScrollView style={styles.screenContainer}>
-            <Text style={styles.text}>{blabla.fullName}</Text>
+            <Text>{blabla.fullName}</Text>
         </ScrollView>
     );
 };
@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
         flex: 1,
         // backgroundColor: 'white',
     },
-    text: {
-        fontSize: 16,
-        color: 'black',
-    },
+    // text: {
+    //     fontSize: 16,
+    //     color: 'black',
+    // },
 });

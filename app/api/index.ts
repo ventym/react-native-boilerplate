@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 const defaultAxiosRequestConfig: AxiosRequestConfig = {
-    baseURL: 'https://reqres.in/api',
+    baseURL: 'https://reqres.in/api', // TODO: react-native-config
 };
 
 const apiInstance = axios.create(defaultAxiosRequestConfig);
@@ -30,7 +30,7 @@ if (__DEV__) {
 }
 
 // TODO react-native-config
-if (__DEV__ && false) {
+if (__DEV__ && true) {
     const attachMocks = require('./mocks').default;
     attachMocks(apiInstance);
 }

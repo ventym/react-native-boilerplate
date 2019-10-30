@@ -14,6 +14,10 @@ const fetchBlablaList = (): ThunkAction<Promise<void>, IState, {}, AnyAction> =>
         dispatch(actions.blabla.fetchListSuccess(response.data));
     } else {
         dispatch(actions.appMessage.add({
+            type: 'ERROR',
+            text: 'Внимание! При плохом интернете работоспособность приложения может быть нарушена!',
+        }));
+        dispatch(actions.appMessage.add({
             type: 'WARN',
             text: 'Не удалось загрузить данные',
         }));

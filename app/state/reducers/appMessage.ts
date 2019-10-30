@@ -6,7 +6,7 @@ import actions from 'app/actions';
 import { IAppMessageState, IAppMessage } from 'app/state/types';
 import { IAppMessageAddPayload } from 'app/actions/types';
 
-const DEFAULT_APP_MESSAGE_LIFETIME = 20000; // ms
+const DEFAULT_APP_MESSAGE_LIFETIME = 15000; // ms
 
 const initialState: IAppMessageState = {
     list: [],

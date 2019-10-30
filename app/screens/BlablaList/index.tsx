@@ -26,17 +26,19 @@ const BlablaList: React.FC = () => {
     if (!isLoaded && isLoading) return <LoadingView/>;
 
     return (
-        <FlatList
-            style={styles.screenContainer}
-            contentContainerStyle={{ flex: 1 }}
-            data={blablaList}
-            // FIXME: renderItem={BlablaItem} - после того как FlatList станет нормально работать с FC
-            renderItem={({ item }) => <BlablaItem item={item}/>}
-            keyExtractor={item => item.id}
-            ItemSeparatorComponent={BlablaItemSeparator}
-            ListEmptyComponent={NoDataView}
-            refreshControl={<RefreshControl refreshing={isLoading} onRefresh={refetchBlablaList}/>}
-        />
+        <View style={styles.screenContainer}>
+            <FlatList
+                style={StyleSheet.absoluteFill}
+                contentContainerStyle={StyleSheet.absoluteFill}
+                data={blablaList}
+                // FIXME: renderItem={BlablaItem} - после того как FlatList станет нормально работать с FC
+                renderItem={({ item }) => <BlablaItem item={item}/>}
+                keyExtractor={item => item.id}
+                ItemSeparatorComponent={BlablaItemSeparator}
+                ListEmptyComponent={NoDataView}
+                refreshControl={<RefreshControl refreshing={isLoading} onRefresh={refetchBlablaList}/>}
+            />
+        </View>
     );
 };
 

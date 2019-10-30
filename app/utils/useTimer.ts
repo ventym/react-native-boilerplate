@@ -6,7 +6,8 @@ interface IUseTimerResult {
 }
 
 const useTimer = (onTimer: () => void, timeout: number, immediatelyStart: boolean = true): IUseTimerResult => {
-    const timerId = useRef<NodeJS.Timeout>()
+    const timerId = useRef<NodeJS.Timeout>();
+
     const startTimer = useCallback(() => {
         timerId.current = setTimeout(onTimer, timeout);
     }, [onTimer, timeout]);
@@ -23,7 +24,7 @@ const useTimer = (onTimer: () => void, timeout: number, immediatelyStart: boolea
     return {
         startTimer,
         stopTimer,
-    }
+    };
 };
 
 export default useTimer;

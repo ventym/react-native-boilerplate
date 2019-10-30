@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import {
     StyleSheet,
     TouchableOpacity,
-    View,
+    // View,
     Text,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
@@ -22,7 +22,7 @@ const BlablaItem: React.FC<IProps> = (props) => {
 
     return (
         <TouchableOpacity style={styles.container} onPress={onPressItem}>
-            <Text style={styles.text}>{props.item.fullName}</Text>
+            <Text>{props.item.fullName}</Text>
         </TouchableOpacity>
     );
 };
@@ -33,9 +33,5 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         padding: 8,
-    },
-    text: {
-        fontSize: 16,
-        color: 'black',
     },
 });
