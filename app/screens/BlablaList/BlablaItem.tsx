@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react';
 import {
     StyleSheet,
-    TouchableOpacity,
     View,
     Text,
     Image,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import { IBlabla } from 'app/state/types';
 
@@ -18,7 +18,7 @@ const BlablaItem: React.FC<IProps> = (props) => {
     const navigation = useNavigation();
 
     const onPressItem = useCallback(() => {
-        navigation.navigate('BlablaDetails', { id: props.item.id });
+        navigation.navigate('BlablaDetailsScreen', { id: props.item.id });
     }, [navigation, props.item.id]);
 
     return (
@@ -30,8 +30,8 @@ const BlablaItem: React.FC<IProps> = (props) => {
                 />
             </View>
             <View style={styles.textContainer}>
-                <Text>{props.item.fullName}</Text>
-                <Text>{props.item.email}</Text>
+                <Text style={styles.text}>{props.item.fullName}</Text>
+                <Text style={styles.email}>{props.item.email}</Text>
             </View>
         </TouchableOpacity>
     );
@@ -58,5 +58,15 @@ const styles = StyleSheet.create({
         padding: 4,
         marginLeft: 4,
         justifyContent: 'center',
+    },
+    text: {
+        fontSize: 16,
+        color: 'black',
+        lineHeight: 26,
+    },
+    email: {
+        fontSize: 14,
+        color: 'gray',
+        lineHeight: 20,
     },
 });

@@ -13,7 +13,7 @@ import LoadingView from 'app/components/LoadingView';
 import NoDataView from 'app/components/NoDataView';
 import BlablaItem from 'app/screens/BlablaList/BlablaItem';
 
-const BlablaList: React.FC = () => {
+const BlablaListScreen: React.FC = () => {
     const blablaList = useSelector<IState, IBlabla[]>(state => state.blabla.list);
     const isLoaded = useSelector<IState, boolean>(state => state.blabla.isLoaded);
     const isLoading = useSelector<IState, boolean>(state => state.blabla.isLoading);
@@ -42,14 +42,14 @@ const BlablaList: React.FC = () => {
     );
 };
 
-export default BlablaList;
+export default BlablaListScreen;
 
 const BlablaItemSeparator: React.FC = () => <View style={styles.itemSeparator}/>;
 
 const styles = StyleSheet.create({
     screenContainer: {
         flex: 1,
-        // backgroundColor: 'white',
+        backgroundColor: 'aliceblue',
     },
     itemSeparator: {
         width: '100%',

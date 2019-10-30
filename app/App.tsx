@@ -6,6 +6,8 @@ import fetchBlablaList from 'app/thunks/fetchBlablaList';
 import buildStore from 'app/state';
 import AppNavigation from 'app/navigation';
 
+import 'app/i18n';
+
 const store = buildStore((dispatch) => {
     dispatch && dispatch(fetchBlablaList());
 });

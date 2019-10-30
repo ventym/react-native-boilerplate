@@ -1,7 +1,7 @@
 export type ParamList = {
-    'BlablaList': undefined;
-    'BlablaDetails': {
+    'BlablaListScreen': undefined;
+    'BlablaDetailsScreen': {
         id: string;
     };
-    'Settings': undefined;
+    'SettingsScreen': undefined;
 };

@@ -1,28 +1,47 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
     StyleSheet,
     View,
     Text,
 } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { useDispatch } from 'react-redux';
 
-const Settings: React.FC = () => {
+import { default as thunkChangeLanguage } from 'app/thunks/changeLanguage';
+import { useTranslation } from 'react-i18next';
+
+const SettingsScreen: React.FC = () => {
+    const { t } = useTranslation('SettingsScreen');
+
+    const dispatch = useDispatch();
+    const changeLanguage = useCallback(() => {
+        dispatch(thunkChangeLanguage());
+    }, []);
+
     return (
-        <ScrollView style={styles.screenContainer}>
-            <Text style={styles.text}>Settings</Text>
+        <ScrollView
+            style={styles.screenContainer}
+            contentContainerStyle={styles.contentContainer}
+        >
+            <TouchableOpacity onPress={changeLanguage}>
+                <Text style={styles.link}>{t('changeLanguage')}</Text>
+            </TouchableOpacity>
         </ScrollView>
     );
 };
 
-export default Settings;
+export default SettingsScreen;
 
 const styles = StyleSheet.create({
     screenContainer: {
         flex: 1,
-        // backgroundColor: 'white',
+        backgroundColor: 'aliceblue',
     },
-    text: {
+    contentContainer: {
+        padding: 8,
+    },
+    link: {
         fontSize: 16,
-        color: 'black',
-    }
+        color: 'dodgerblue',
+    },
 });
