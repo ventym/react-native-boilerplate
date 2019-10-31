@@ -10,6 +10,9 @@ const fetchBlablaList = async (): Promise<IResponse<IBlabla[]>> => {
         const request: AxiosRequestConfig = {
             method: 'GET',
             url: '/users',
+            params: {
+                'per_page': 20,
+            },
         };
         const response = await apiInstance.request<IFetchBlablaListResponse>(request);
 
