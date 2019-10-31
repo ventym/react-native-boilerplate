@@ -15,26 +15,26 @@ import ClientItem from './ClientItem';
 import ClientItemSeparator from './ClientItemSeparator';
 
 const ClientListScreen: React.FC = () => {
-    const blablaList = useSelector<IState, IClient[]>(state => state.client.list);
-    // const isLoaded = useSelector<IState, boolean>(state => state.blabla.isLoaded);
+    const clientList = useSelector<IState, IClient[]>(state => state.client.list);
+    // const isLoaded = useSelector<IState, boolean>(state => state.client.isLoaded);
     const isLoading = useSelector<IState, boolean>(state => state.client.isLoading);
 
     const dispatch = useDispatch();
-    const refetchBlablaList = useCallback(() => {
+    const refetchClientList = useCallback(() => {
         dispatch(fetchClientList());
     }, []);
 
     return (
         <FlatList
             style={styles.screenContainer}
-            contentContainerStyle={blablaList.length === 0 && styles.contentContainer}
-            data={blablaList}
-            // FIXME: renderItem={BlablaItem} - после того как FlatList станет нормально работать с FC
+            contentContainerStyle={clientList.length === 0 && styles.contentContainer}
+            data={clientList}
+            // FIXME: renderItem={ClientItem} - после того как FlatList станет нормально работать с FC
             renderItem={({ item }) => <ClientItem item={item}/>}
             keyExtractor={item => item.id}
             ItemSeparatorComponent={ClientItemSeparator}
             ListEmptyComponent={NoDataView}
-            refreshControl={<RefreshControl refreshing={isLoading} onRefresh={refetchBlablaList}/>}
+            refreshControl={<RefreshControl refreshing={isLoading} onRefresh={refetchClientList}/>}
         />
     );
 };
