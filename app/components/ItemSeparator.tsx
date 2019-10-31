@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-const ClientItemSeparator: React.FC = () => <View style={styles.itemSeparator}/>;
+const ItemSeparator: React.FC = () => <View style={styles.itemSeparator}/>;
 
-export default ClientItemSeparator;
+export default ItemSeparator;
 
 const styles = StyleSheet.create({
     itemSeparator: {

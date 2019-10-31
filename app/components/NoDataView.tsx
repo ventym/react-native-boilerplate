@@ -7,7 +7,7 @@ const NoDataView: React.FC = () => {
 
     return (
         <View style={styles.screenContainer}>
-            <Text style={styles.text}>{t('BlablaListScreen:noData')}</Text>
+            <Text style={styles.text}>{t('ClientListScreen:noData')}</Text>
         </View>
     )
 };

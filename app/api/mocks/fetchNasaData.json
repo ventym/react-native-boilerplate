@@ -1,0 +1,60 @@
+{
+    "photos": [
+        {
+            "camera": {
+                "id": 20,
+                "name": "FHAZ",
+                "rover_id": 5,
+                "full_name": "Front Hazard Avoidance Camera"
+            },
+            "earth_date": "2015-05-30",
+            "id": 102693,
+            "img_src": "http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/fcam/FLB_486265257EDR_F0481570FHAZ00323M_.JPG",
+            "rover": {
+                "cameras": [
+                    {
+                        "name": "FHAZ",
+                        "full_name": "Front Hazard Avoidance Camera"
+                    }
+                ],
+                "id": 5,
+                "landing_date": "2012-08-06",
+                "launch_date": "2011-11-26",
+                "max_date": "2019-09-28",
+                "max_sol": 2540,
+                "name": "Curiosity",
+                "status": "active",
+                "total_photos": 366206
+            },
+            "sol": 1000
+        },
+        {
+            "camera": {
+                "id": 20,
+                "name": "FHAZ",
+                "rover_id": 5,
+                "full_name": "Front Hazard Avoidance Camera"
+            },
+            "earth_date": "2015-05-28",
+            "id": 102694,
+            "img_src": "http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/fcam/FLB_486265257EDR_F0481570FHAZ00323M_.JPG",
+            "rover": {
+                "cameras": [
+                    {
+                        "name": "FHAZ",
+                        "full_name": "Front Hazard Avoidance Camera"
+                    }
+                ],
+                "id": 5,
+                "landing_date": "2012-08-06",
+                "launch_date": "2011-11-26",
+                "max_date": "2019-09-28",
+                "max_sol": 2540,
+                "name": "Curiosity",
+                "status": "active",
+                "total_photos": 366206
+            },
+            "sol": 1000
+        }
+    ]
+}

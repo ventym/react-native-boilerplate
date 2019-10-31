@@ -8,8 +8,13 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useTranslation } from 'react-i18next';
 import { ParamList } from 'app/navigation/types';
 import AppMessageLayout from 'app/components/AppMessageLayout';
+
 import ClientListScreen from 'app/screens/ClientList';
 import ClientDetailsScreen from 'app/screens/ClientDetails';
+import NasaRoverListScreen from 'app/screens/Nasa/RoverList';
+import NasaCameraListScreen from 'app/screens/Nasa/CameraList';
+import NasaPhotoListScreen from 'app/screens/Nasa/PhotoList';
+import NasaPhotoDetailsSwipeableListScreen from 'app/screens/Nasa/PhotoDetailsSwipeableList';
 import SettingsScreen from 'app/screens/Settings';
 
 const styles = StyleSheet.create({
@@ -46,6 +51,50 @@ const ClientStackScreen: React.FC = () => {
                 }}
             />
         </ClientStack.Navigator>
+    );
+};
+
+const NasaStack = createStackNavigator<ParamList>();
+const NasaStackScreen: React.FC = () => {
+    const { t } = useTranslation();
+
+    return (
+        <NasaStack.Navigator
+            initialRouteName='NasaRoverListScreen'
+            screenOptions={{
+                headerTitleStyle: styles.headerTitle,
+            }}
+        >
+            <NasaStack.Screen
+                name='NasaRoverListScreen'
+                component={NasaRoverListScreen}
+                options={{
+                    title: t('NasaRoverListScreen:screenTitle'),
+                }}
+            />
+            <NasaStack.Screen
+                name='NasaCameraListScreen'
+                component={NasaCameraListScreen}
+                options={{
+                    title: t('NasaCameraListScreen:screenTitle'),
+                }}
+            />
+            <NasaStack.Screen
+                name='NasaPhotoListScreen'
+                component={NasaPhotoListScreen}
+                options={(props) => ({
+                    title: props.route.params.title,
+                })}
+            />
+            <NasaStack.Screen
+                name='NasaPhotoDetailsSwipeableListScreen'
+                component={NasaPhotoDetailsSwipeableListScreen}
+                options={(props) => ({
+                    title: '', // TODO props.route.params.id,
+                    gestureEnabled: false,
+                })}
+            />
+        </NasaStack.Navigator>
     );
 };
 
@@ -86,6 +135,14 @@ const MainTabScreen: React.FC = () => {
                 options={{
                     title: t('tabBar:clients'),
                     tabBarIcon: (props) => <Icon name='user-friends' size={16} color={props.color}/>,
+                }}
+            />
+            <MainTab.Screen
+                name='NasaStackScreen'
+                component={NasaStackScreen}
+                options={{
+                    title: t('tabBar:nasa'),
+                    tabBarIcon: (props) => <Icon name='globe' size={16} color={props.color}/>,
                 }}
             />
             <MainTab.Screen

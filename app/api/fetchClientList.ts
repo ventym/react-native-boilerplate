@@ -1,11 +1,11 @@
 import { AxiosRequestConfig } from 'axios';
 
-import apiInstance from 'app/api';
-import { IResponse, IFetchClientListResponse } from 'app/api/types';
+import reqresApi from 'app/api/reqresApi';
+import { IApiResponse, IFetchClientListResponse } from 'app/api/types';
 import { IClient } from 'app/state/types';
 
 
-const fetchClientList = async (): Promise<IResponse<IClient[]>> => {
+const fetchClientList = async (): Promise<IApiResponse<IClient[]>> => {
     try {
         const request: AxiosRequestConfig = {
             method: 'GET',
@@ -14,7 +14,7 @@ const fetchClientList = async (): Promise<IResponse<IClient[]>> => {
                 'per_page': 20,
             },
         };
-        const response = await apiInstance.request<IFetchClientListResponse>(request);
+        const response = await reqresApi.request<IFetchClientListResponse>(request);
 
         if (response.status !== 200) {
             return {
