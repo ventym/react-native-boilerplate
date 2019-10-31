@@ -9,10 +9,8 @@ import AppNavigation from 'app/navigation';
 import 'app/i18n';
 
 const store = buildStore((dispatch) => {
-    if (dispatch) {
-        dispatch(thunks.fetchClientList());
-        dispatch(thunks.fetchNasaData());
-    };
+    dispatch(thunks.fetchClientList());
+    dispatch(thunks.fetchNasaData());
 });
 
 const App: React.FC = () => {

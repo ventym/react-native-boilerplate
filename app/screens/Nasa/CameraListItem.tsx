@@ -1,39 +1,22 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import {
     StyleSheet,
-    View,
     Text,
-    Image,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useSelector } from 'react-redux';
 
-import { IState, INasaCamera } from 'app/state/types';
+import { INasaCamera } from 'app/state/types';
 
 interface IProps {
-    id: string;
+    camera: INasaCamera;
+    onPress?: () => void;
 }
 
 const CameraItem: React.FC<IProps> = (props) => {
-    const navigation = useNavigation();
-    const camera = useSelector<IState, INasaCamera | undefined>(state => state.nasa.cameraList[props.id]);
-
-    const onPressItem = useCallback(() => {
-        navigation.navigate('NasaPhotoListScreen', {
-            filterBy: 'CAMERA',
-            filterId: props.id,
-            title: camera ? camera.fullName : '',
-        });
-    }, [navigation, props.id, camera]);
-
-
-    if (!camera) return null;
-
     return (
-        <TouchableOpacity style={styles.container} onPress={onPressItem}>
-            <Text style={styles.text}>{camera.fullName}</Text>
-            <Text style={styles.subtext}>{camera.roverName}</Text>
+        <TouchableOpacity style={styles.container} onPress={props.onPress}>
+            <Text style={styles.text}>{props.camera.fullName}</Text>
+            <Text style={styles.subtext}>{props.camera.roverName}</Text>
         </TouchableOpacity>
     );
 };

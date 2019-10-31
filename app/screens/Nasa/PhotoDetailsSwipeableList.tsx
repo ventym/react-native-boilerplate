@@ -1,12 +1,11 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import {
     StyleSheet,
     View,
-    LayoutChangeEvent,
 } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useRoute, RouteProp } from '@react-navigation/core';
+import Swiper from 'react-native-swiper';
 
 import {
     IState,
@@ -19,41 +18,31 @@ const NasaPhotoDetailsSwipeableListScreen: React.FC = () => {
     const route = useRoute<RouteProp<ParamList, 'NasaPhotoDetailsSwipeableListScreen'>>();
     const filterBy = route.params && route.params.filterBy ? route.params.filterBy : undefined;
     const filterId = route.params && route.params.filterId ? route.params.filterId : undefined;
+    const initialIndex = route.params && route.params.initialIndex ? route.params.initialIndex : 0;
 
     const photoList = useSelector<IState, Record<string, INasaPhoto>>(state => state.nasa.photoList);
-    const photoIdList = useMemo(() => {
+    const filteredPhotoList = useMemo(() => {
         if (!filterBy || !filterId) return [];
-        if (filterBy === 'CAMERA') return Object.values(photoList).filter(photo => photo.cameraId === filterId).map(photo => photo.id);
-        if (filterBy === 'ROVER') return Object.values(photoList).filter(photo => photo.roverId === filterId).map(photo => photo.id);
+        if (filterBy === 'CAMERA') return Object.values(photoList).filter(photo => photo.cameraId === filterId);
+        if (filterBy === 'ROVER') return Object.values(photoList).filter(photo => photo.roverId === filterId);
         return [];
     }, [photoList, filterBy, filterId]);
 
-    const [width, setWidth] = useState(0);
-    const onLayout = useCallback((event: LayoutChangeEvent) => {
-        setWidth(event.nativeEvent.layout.width);
-    }, [setWidth]);
-
-    const initialIndex = route.params && route.params.initialIndex ? route.params.initialIndex : 0;
-
     return (
-        <View style={{ flex: 1 }}>
-            <FlatList
-                horizontal={true}
-                style={styles.screenContainer}
-                data={photoIdList}
-                // FIXME: renderItem={PhotoItem} - после того как FlatList станет нормально работать с FC
-                renderItem={({ item }) => (
+        <View style={styles.screenContainer}>
+            <Swiper
+                showsPagination={false}
+                showsButtons={false}
+                autoplay={false}
+                index={initialIndex}
+            >
+                {filteredPhotoList.map(photo => (
                     <PhotoDetails
-                        id={item}
-                        width={width}
+                        key={photo.id}
+                        photo={photo}
                     />
-                )}
-                keyExtractor={item => item}
-                showsHorizontalScrollIndicator={false}
-                pagingEnabled={true}
-                onLayout={onLayout}
-                initialScrollIndex={initialIndex}
-            />
+                ))}
+            </Swiper>
         </View>
     );
 };
@@ -64,8 +53,5 @@ const styles = StyleSheet.create({
     screenContainer: {
         flex: 1,
         backgroundColor: 'aliceblue',
-    },
-    noScrollContentContainer: {
-        flex: 1,
     },
 });

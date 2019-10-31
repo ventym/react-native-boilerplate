@@ -1,39 +1,22 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import {
     StyleSheet,
-    View,
     Text,
-    Image,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useSelector } from 'react-redux';
 
-import { IState, INasaRover } from 'app/state/types';
+import { INasaRover } from 'app/state/types';
 
 interface IProps {
-    id: string;
+    rover: INasaRover;
+    onPress?: () => void;
 }
 
 const RoverItem: React.FC<IProps> = (props) => {
-    const navigation = useNavigation();
-    const rover = useSelector<IState, INasaRover | undefined>(state => state.nasa.roverList[props.id]);
-
-    const onPressItem = useCallback(() => {
-        navigation.navigate('NasaPhotoListScreen', {
-            filterBy: 'ROVER',
-            filterId: props.id,
-            title: rover ? rover.name : '',
-        });
-    }, [navigation, props.id, rover]);
-
-
-    if (!rover) return null;
-
     return (
-        <TouchableOpacity style={styles.container} onPress={onPressItem}>
-            <Text style={styles.text}>{rover.name}</Text>
-            <Text style={styles.subtext}>{rover.status}</Text>
+        <TouchableOpacity style={styles.container} onPress={props.onPress}>
+            <Text style={styles.text}>{props.rover.name}</Text>
+            <Text style={styles.subtext}>{props.rover.status}</Text>
         </TouchableOpacity>
     );
 };

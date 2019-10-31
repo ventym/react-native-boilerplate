@@ -2,40 +2,48 @@ import React, { useCallback } from 'react';
 import {
     StyleSheet,
     View,
-    Text,
     RefreshControl,
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigation } from '@react-navigation/core';
 
 import {
     IState,
-    INasaPhoto,
+    INasaCamera,
 } from 'app/state/types';
 import thunks from 'app/thunks';
-
 import ItemSeparator from 'app/components/ItemSeparator';
 import CameraListItem from './CameraListItem';
 import NoDataView from 'app/components/NoDataView';
 
 const NasaCameraListScreen: React.FC = () => {
     const isLoading = useSelector<IState, boolean>(state => state.nasa.isLoading);
-    const cameraIdList = useSelector<IState, string[]>(state => state.nasa.cameraIdList);
+    const cameraList = useSelector<IState, INasaCamera[]>(state => state.nasa.cameraIdList.map(id => state.nasa.cameraList[id]));
 
     const dispatch = useDispatch();
     const refetchNasaData = useCallback(() => {
         dispatch(thunks.fetchNasaData());
     }, []);
 
+    const navigation = useNavigation();
+    const onPressCamera = useCallback((camera: INasaCamera) => () => {
+        navigation.navigate('NasaPhotoListScreen', {
+            filterBy: 'CAMERA',
+            filterId: camera.id,
+            title: camera.fullName,
+        });
+    }, [navigation]);
+
     return (
         <View style={styles.screenContainer}>
             <FlatList
                 style={styles.listContainer}
-                contentContainerStyle={cameraIdList.length === 0 && styles.noScrollContentContainer}
-                data={cameraIdList}
+                contentContainerStyle={cameraList.length === 0 && styles.noScrollContentContainer}
+                data={cameraList}
                 // FIXME: renderItem={CameraListItem} - после того как FlatList станет нормально работать с FC
-                renderItem={({ item }) => <CameraListItem id={item}/>}
-                keyExtractor={item => item}
+                renderItem={({ item }) => <CameraListItem camera={item} onPress={onPressCamera(item)}/>}
+                keyExtractor={item => item.id}
                 ItemSeparatorComponent={ItemSeparator}
                 ListEmptyComponent={NoDataView}
                 refreshControl={<RefreshControl refreshing={isLoading} onRefresh={refetchNasaData}/>}
