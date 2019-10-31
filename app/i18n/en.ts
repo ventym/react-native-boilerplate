@@ -1,18 +1,18 @@
 export default {
     AppMessage: {
         cannotOpenEmail: 'Failed to send email',
-        cannotFetchBlablaList: 'Failed to load data',
+        cannotFetchClientList: 'Failed to load data',
         sampleError: 'Attention! If the Internet is bad, the application’s performance may be impaired!',
     },
     tabBar: {
-        blablaList: 'Clients',
+        clients: 'Clients',
         settings: 'Settings',
     },
-    BlablaListScreen: {
+    ClientListScreen: {
         screenTitle: 'Clients',
         noData: 'No data',
     },
-    BlablaDetailsScreen: {
+    ClientDetailsScreen: {
         screenTitle: '',
         mark: 'Mark',
         unmark: 'Unmark',

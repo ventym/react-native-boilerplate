@@ -1,26 +1,27 @@
 import React, { useCallback } from 'react';
 import {
     StyleSheet,
-    View,
+    // View,
     RefreshControl,
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { IState, IBlabla } from 'app/state/types';
-import fetchBlablaList from 'app/thunks/fetchBlablaList';
+import { IState, IClient } from 'app/state/types';
+import fetchClientList from 'app/thunks/fetchClientList';
 // import LoadingView from 'app/components/LoadingView';
 import NoDataView from 'app/components/NoDataView';
-import BlablaItem from 'app/screens/BlablaList/BlablaItem';
+import ClientItem from './ClientItem';
+import ClientItemSeparator from './ClientItemSeparator';
 
-const BlablaListScreen: React.FC = () => {
-    const blablaList = useSelector<IState, IBlabla[]>(state => state.blabla.list);
+const ClientListScreen: React.FC = () => {
+    const blablaList = useSelector<IState, IClient[]>(state => state.client.list);
     // const isLoaded = useSelector<IState, boolean>(state => state.blabla.isLoaded);
-    const isLoading = useSelector<IState, boolean>(state => state.blabla.isLoading);
+    const isLoading = useSelector<IState, boolean>(state => state.client.isLoading);
 
     const dispatch = useDispatch();
     const refetchBlablaList = useCallback(() => {
-        dispatch(fetchBlablaList());
+        dispatch(fetchClientList());
     }, []);
 
     return (
@@ -29,18 +30,16 @@ const BlablaListScreen: React.FC = () => {
             contentContainerStyle={blablaList.length === 0 && styles.contentContainer}
             data={blablaList}
             // FIXME: renderItem={BlablaItem} - после того как FlatList станет нормально работать с FC
-            renderItem={({ item }) => <BlablaItem item={item}/>}
+            renderItem={({ item }) => <ClientItem item={item}/>}
             keyExtractor={item => item.id}
-            ItemSeparatorComponent={BlablaItemSeparator}
+            ItemSeparatorComponent={ClientItemSeparator}
             ListEmptyComponent={NoDataView}
             refreshControl={<RefreshControl refreshing={isLoading} onRefresh={refetchBlablaList}/>}
         />
     );
 };
 
-export default BlablaListScreen;
-
-const BlablaItemSeparator: React.FC = () => <View style={styles.itemSeparator}/>;
+export default ClientListScreen;
 
 const styles = StyleSheet.create({
     screenContainer: {
@@ -49,11 +48,5 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         flex: 1,
-    },
-    itemSeparator: {
-        width: '100%',
-        height: StyleSheet.hairlineWidth,
-        backgroundColor: 'silver',
-        marginLeft: 12,
     },
 });

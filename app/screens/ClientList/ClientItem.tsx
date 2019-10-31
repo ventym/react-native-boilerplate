@@ -8,17 +8,17 @@ import {
 import { useNavigation } from '@react-navigation/core';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import { IBlabla } from 'app/state/types';
+import { IClient } from 'app/state/types';
 
 interface IProps {
-    item: IBlabla;
+    item: IClient;
 }
 
-const BlablaItem: React.FC<IProps> = (props) => {
+const ClientItem: React.FC<IProps> = (props) => {
     const navigation = useNavigation();
 
     const onPressItem = useCallback(() => {
-        navigation.navigate('BlablaDetailsScreen', { id: props.item.id });
+        navigation.navigate('ClientDetailsScreen', { id: props.item.id });
     }, [navigation, props.item.id]);
 
     return (
@@ -37,7 +37,7 @@ const BlablaItem: React.FC<IProps> = (props) => {
     );
 };
 
-export default BlablaItem;
+export default ClientItem;
 
 const styles = StyleSheet.create({
     container: {

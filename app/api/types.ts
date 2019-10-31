@@ -12,7 +12,7 @@ export type IResponse<T> = IResponseSuccess<T> | IResponseFailed;
 
 // API types:
 
-export interface IFetchBlablaListResponse {
+export interface IFetchClientListResponse {
     "page": number,
     "per_page": number,
     "total": number,

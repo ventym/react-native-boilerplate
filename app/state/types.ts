@@ -1,14 +1,14 @@
 export interface IState {
     appMessage: IAppMessageState;
-    blabla: IBlablaState;
+    client: IClientState;
 }
 
 export interface IAppMessageState {
     list: IAppMessage[];
 }
 
-export interface IBlablaState {
-    list: IBlabla[];
+export interface IClientState {
+    list: IClient[];
     isLoaded: boolean;
     isLoading: boolean;
 }
@@ -25,7 +25,7 @@ export interface IAppMessage {
     text: string;
 }
 
-export interface IBlabla {
+export interface IClient {
     id: string;
     fullName: string;
     firstName: string;

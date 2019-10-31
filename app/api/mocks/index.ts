@@ -6,7 +6,7 @@ const attachMocks = (axiosInstance: AxiosInstance) => {
 
     console.warn('MOCKS ENABLED!');
 
-    // mock.onGet('/users').reply(200, require('./fetchBlablaList.json'));
+    // mock.onGet('/users').reply(200, require('./fetchClientList.json'));
     mock.onGet('/users').timeout();
 };
 

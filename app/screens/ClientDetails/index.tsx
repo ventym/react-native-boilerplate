@@ -9,19 +9,19 @@ import { useRoute, RouteProp } from '@react-navigation/core';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { IState, IBlabla } from 'app/state/types';
+import { IState, IClient } from 'app/state/types';
 import { ParamList } from 'app/navigation/types';
 import NoDataView from 'app/components/NoDataView';
 
-const BlablaDetailsScreen: React.FC = () => {
-    const route = useRoute<RouteProp<ParamList, 'BlablaDetailsScreen'>>();
+const ClientDetailsScreen: React.FC = () => {
+    const route = useRoute<RouteProp<ParamList, 'ClientDetailsScreen'>>();
 
-    const blablaId = route.params && route.params.id ? route.params.id : undefined;
-    const blabla = useSelector<IState, IBlabla | undefined>(state => state.blabla.list.find(blabla => blabla.id === blablaId));
+    const clientId = route.params && route.params.id ? route.params.id : undefined;
+    const client = useSelector<IState, IClient | undefined>(state => state.client.list.find(client => client.id === clientId));
 
     const { t } = useTranslation('SettingsScreen');
 
-    if (!blabla) {
+    if (!client) {
         return <NoDataView/>;
     }
 
@@ -30,12 +30,12 @@ const BlablaDetailsScreen: React.FC = () => {
             style={styles.screenContainer}
             contentContainerStyle={styles.contentContainer}
         >
-            <Text style={styles.text}>{blabla.fullName}</Text>
+            <Text style={styles.text}>{client.fullName}</Text>
         </ScrollView>
     );
 };
 
-export default BlablaDetailsScreen;
+export default ClientDetailsScreen;
 
 const styles = StyleSheet.create({
     screenContainer: {

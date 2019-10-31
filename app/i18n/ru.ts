@@ -1,18 +1,18 @@
 export default {
     AppMessage: {
         cannotOpenEmail: 'Не удалось отправить письмо',
-        cannotFetchBlablaList: 'Не удалось загрузить данные',
+        cannotFetchClientList: 'Не удалось загрузить данные',
         sampleError: 'Внимание! При плохом интернете работоспособность приложения может быть нарушена!',
     },
     tabBar: {
-        blablaList: 'Клиенты',
+        clients: 'Клиенты',
         settings: 'Настройки',
     },
-    BlablaListScreen: {
+    ClientListScreen: {
         screenTitle: 'Клиенты',
         noData: 'Нет данных',
     },
-    BlablaDetailsScreen: {
+    ClientDetailsScreen: {
         screenTitle: '',
         mark: 'Mark',
         unmark: 'Unmark',

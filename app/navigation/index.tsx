@@ -8,8 +8,8 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useTranslation } from 'react-i18next';
 import { ParamList } from 'app/navigation/types';
 import AppMessageLayout from 'app/components/AppMessageLayout';
-import BlablaListScreen from 'app/screens/BlablaList';
-import BlablaDetailsScreen from 'app/screens/BlablaDetails';
+import ClientListScreen from 'app/screens/ClientList';
+import ClientDetailsScreen from 'app/screens/ClientDetails';
 import SettingsScreen from 'app/screens/Settings';
 
 const styles = StyleSheet.create({
@@ -21,31 +21,31 @@ const styles = StyleSheet.create({
     },
 });
 
-const BlablaStack = createStackNavigator<ParamList>();
-const BlablaStackScreen: React.FC = () => {
+const ClientStack = createStackNavigator<ParamList>();
+const ClientStackScreen: React.FC = () => {
     const { t } = useTranslation();
 
     return (
-        <BlablaStack.Navigator
+        <ClientStack.Navigator
             screenOptions={{
                 headerTitleStyle: styles.headerTitle,
             }}
         >
-            <BlablaStack.Screen
-                name='BlablaListScreen'
-                component={BlablaListScreen}
+            <ClientStack.Screen
+                name='ClientListScreen'
+                component={ClientListScreen}
                 options={{
-                    title: t('BlablaListScreen:screenTitle'),
+                    title: t('ClientListScreen:screenTitle'),
                 }}
             />
-            <BlablaStack.Screen
-                name='BlablaDetailsScreen'
-                component={BlablaDetailsScreen}
+            <ClientStack.Screen
+                name='ClientDetailsScreen'
+                component={ClientDetailsScreen}
                 options={{
-                    title: t('BlablaDetailsScreen:screenTitle'),
+                    title: t('ClientDetailsScreen:screenTitle'),
                 }}
             />
-        </BlablaStack.Navigator>
+        </ClientStack.Navigator>
     );
 };
 
@@ -81,10 +81,10 @@ const MainTabScreen: React.FC = () => {
             }}
         >
             <MainTab.Screen
-                name='BlablaStackScreen'
-                component={BlablaStackScreen}
+                name='ClientStackScreen'
+                component={ClientStackScreen}
                 options={{
-                    title: t('tabBar:blablaList'),
+                    title: t('tabBar:clients'),
                     tabBarIcon: (props) => <Icon name='user-friends' size={16} color={props.color}/>,
                 }}
             />

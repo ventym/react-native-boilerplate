@@ -2,11 +2,11 @@ import { combineReducers } from 'redux';
 
 import { IState } from 'app/state/types';
 import appMessage from 'app/state/reducers/appMessage';
-import blabla from 'app/state/reducers/blabla';
+import client from 'app/state/reducers/client';
 
 const reducer = combineReducers<IState>({
     appMessage,
-    blabla,
+    client,
 });
 
 export default reducer;

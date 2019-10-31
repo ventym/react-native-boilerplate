@@ -1,11 +1,11 @@
 import { AxiosRequestConfig } from 'axios';
 
 import apiInstance from 'app/api';
-import { IResponse, IFetchBlablaListResponse } from 'app/api/types';
-import { IBlabla } from 'app/state/types';
+import { IResponse, IFetchClientListResponse } from 'app/api/types';
+import { IClient } from 'app/state/types';
 
 
-const fetchBlablaList = async (): Promise<IResponse<IBlabla[]>> => {
+const fetchClientList = async (): Promise<IResponse<IClient[]>> => {
     try {
         const request: AxiosRequestConfig = {
             method: 'GET',
@@ -14,7 +14,7 @@ const fetchBlablaList = async (): Promise<IResponse<IBlabla[]>> => {
                 'per_page': 20,
             },
         };
-        const response = await apiInstance.request<IFetchBlablaListResponse>(request);
+        const response = await apiInstance.request<IFetchClientListResponse>(request);
 
         if (response.status !== 200) {
             return {
@@ -43,14 +43,14 @@ const fetchBlablaList = async (): Promise<IResponse<IBlabla[]>> => {
     }
 };
 
-export default fetchBlablaList;
+export default fetchClientList;
 
 // TODO
-const validate = (responseData: IFetchBlablaListResponse): boolean => {
+const validate = (responseData: IFetchClientListResponse): boolean => {
     return true;
 };
 
-const convert = (responseData: IFetchBlablaListResponse): IBlabla[] => {
+const convert = (responseData: IFetchClientListResponse): IClient[] => {
     return responseData.data.map(it => ({
         id: it.id.toString(),
         fullName: `${it.first_name} ${it.last_name}`.trim(),
