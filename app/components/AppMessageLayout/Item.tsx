@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useContext, useMemo } from 'react';
 import {
     StyleSheet,
     View,
@@ -14,16 +14,11 @@ import { IAppMessage, IAppMessageType } from 'app/state/types';
 import actions from 'app/actions';
 import useTimer from 'app/utils/useTimer';
 import useCollapseAnimation from 'app/utils/useCollapseAnimation';
+import { ThemeContext } from 'app/theme';
 
 interface IProps {
     item: IAppMessage;
 }
-
-const MESSAGE_COLOR: Record<IAppMessageType, string> = {
-    'INFO': 'darkcyan',
-    'WARN': 'goldenrod',
-    'ERROR': 'tomato',
-};
 
 const MESSAGE_ICON: Record<IAppMessageType, string> = {
     'INFO': 'info-circle',
@@ -42,7 +37,7 @@ const AppMessageItem: React.FC<IProps> = (props) => {
 
     useTimer(startAnimation, props.item.lifetime, true);
 
-    const isMeasured = useRef<boolean>(false); // true = размер компонента уже измерян
+    const isMeasured = useRef<boolean>(false); // если true, то размер компонента уже измерян
     const onLayout = useCallback((event: LayoutChangeEvent) => {
         if (!isMeasured.current) {
             isMeasured.current = true;
@@ -50,20 +45,29 @@ const AppMessageItem: React.FC<IProps> = (props) => {
         }
     }, [setHeight, isMeasured.current]);
 
-    const backgroundColor = MESSAGE_COLOR[props.item.type];
+    const theme = useContext(ThemeContext);
+
+    const backgroundColor = theme.colors.appMessageBackground[props.item.type];
     const iconName = MESSAGE_ICON[props.item.type];
+    const containerStyle = useMemo(() => {
+        return StyleSheet.flatten([styles.container, { backgroundColor }]);
+    }, [styles.container, backgroundColor]);
 
     return (
         <TouchableWithoutFeedback
             onPress={startAnimation}
         >
             <Animated.View style={{ overflow: 'hidden', height }}>
-                <View style={[styles.container, { backgroundColor }]} onLayout={onLayout}>
+                <View style={containerStyle} onLayout={onLayout}>
                     <View style={styles.iconContainer}>
-                        <Icon name={iconName} size={24} color='white'/>
+                        <Icon
+                            name={iconName}
+                            size={24}
+                            color={theme.colors.appMessageIcon}
+                        />
                     </View>
                     <View style={styles.textContainer}>
-                        <Text style={styles.text}>{props.item.text}</Text>
+                        <Text style={theme.styles.appMessageText}>{props.item.text}</Text>
                     </View>
                 </View>
             </Animated.View>
@@ -88,9 +92,5 @@ const styles = StyleSheet.create({
     textContainer: {
         flex: 1,
         justifyContent: 'center',
-    },
-    text: {
-        fontSize: 16,
-        color: 'white',
     },
 });

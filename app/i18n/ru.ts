@@ -37,6 +37,7 @@ export default {
     SettingsScreen: {
         screenTitle: 'Настройки',
         changeLanguage: 'Изменить язык приложения',
+        changeTheme: 'Изменить тему приложения',
         // generateRandomAppMessage: 'Generate random message',
     },
     // TEST

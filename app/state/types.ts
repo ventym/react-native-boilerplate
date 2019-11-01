@@ -1,7 +1,12 @@
 export interface IState {
+    settings: ISettingsState;
     appMessage: IAppMessageState;
     client: IClientState;
     nasa: INasaState;
+}
+
+export interface ISettingsState {
+    themeName: string;
 }
 
 export interface IAppMessageState {

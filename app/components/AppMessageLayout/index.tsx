@@ -10,6 +10,7 @@ import { useSafeArea } from 'react-native-safe-area-context';
 
 import { IState, IAppMessage } from 'app/state/types';
 import AppMessageItem from './Item';
+import { ThemeContext } from 'app/theme';
 
 const AppMessageLayout: React.FC = (props) => {
     const messageList = useSelector<IState, IAppMessage[]>(state => state.appMessage.list);
@@ -22,9 +23,14 @@ const AppMessageLayout: React.FC = (props) => {
                 style={[styles.messageListContainer, { marginTop: insets.top + headerHeight }]}
                 data={messageList}
                 // FIXME: renderItem={AppMessageItem} - после того как FlatList станет нормально работать с FC
-                renderItem={({item}) => <AppMessageItem item={item}/>}
+                renderItem={({item}) => (
+                    <AppMessageItem
+                        item={item}
+                    />
+                )}
                 keyExtractor={item => item.id}
                 ItemSeparatorComponent={ItemSeparator}
+                bounces={false}
             />
             {props.children}
         </View>

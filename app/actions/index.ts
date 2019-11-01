@@ -7,11 +7,15 @@ import {
     INasaChangePhotoLoadStatusPayload,
 } from 'app/actions/types';
 
+const settingsAction = actionCreatorFactory('settings');
 const appMessageAction = actionCreatorFactory('appMessage');
 const clientAction = actionCreatorFactory('client');
 const nasaAction = actionCreatorFactory('nasa');
 
 const actions = {
+    settings: {
+        toggleTheme: settingsAction('toggleTheme'),
+    },
     appMessage: {
         add: appMessageAction<IAppMessageAddPayload>('add'),
         delete: appMessageAction<string>('delete'),

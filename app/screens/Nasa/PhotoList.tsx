@@ -1,20 +1,17 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useContext } from 'react';
 import {
-    StyleSheet,
     View,
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/core';
 
-import {
-    IState,
-    INasaPhoto,
-} from 'app/state/types';
+import { IState, INasaPhoto } from 'app/state/types';
 import { ParamList } from 'app/navigation/types';
 import ItemSeparator from 'app/components/ItemSeparator';
 import PhotoListItem from './PhotoListItem';
 import NoDataView from 'app/components/NoDataView';
+import { ThemeContext } from 'app/theme';
 
 const NasaPhotoListScreen: React.FC = () => {
     const navigation = useNavigation();
@@ -38,11 +35,13 @@ const NasaPhotoListScreen: React.FC = () => {
         });
     }, [navigation, filterBy, filterId]);
 
+    const theme = useContext(ThemeContext);
+
     return (
-        <View style={styles.screenContainer}>
+        <View style={theme.styles.screenContainer}>
             <FlatList
-                style={styles.listContainer}
-                contentContainerStyle={filteredPhotoList.length === 0 && styles.noScrollContentContainer}
+                style={theme.styles.flex1}
+                contentContainerStyle={filteredPhotoList.length === 0 && theme.styles.flex1pad8}
                 data={filteredPhotoList}
                 // FIXME: renderItem={PhotoListItem} - после того как FlatList станет нормально работать с FC
                 renderItem={({ item, index }) => (
@@ -60,16 +59,3 @@ const NasaPhotoListScreen: React.FC = () => {
 };
 
 export default NasaPhotoListScreen;
-
-const styles = StyleSheet.create({
-    screenContainer: {
-        flex: 1,
-        backgroundColor: 'aliceblue',
-    },
-    listContainer: {
-        flex: 1,
-    },
-    noScrollContentContainer: {
-        flex: 1,
-    },
-});

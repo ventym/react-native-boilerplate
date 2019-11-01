@@ -1,14 +1,14 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import {
-    StyleSheet,
     View,
     Text,
     Image,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
 import { IClient } from 'app/state/types';
+import { ThemeContext } from 'app/theme';
 
 interface IProps {
     item: IClient;
@@ -21,52 +21,28 @@ const ClientItem: React.FC<IProps> = (props) => {
         navigation.navigate('ClientDetailsScreen', { id: props.item.id });
     }, [navigation, props.item.id]);
 
+    const theme = useContext(ThemeContext);
+
     return (
-        <TouchableOpacity style={styles.container} onPress={onPressItem}>
-            <View style={styles.avatarContainer}>
-                <Image
-                    source={{ uri: props.item.avatar }}
-                    style={styles.avatarImage}
-                />
-            </View>
-            <View style={styles.textContainer}>
-                <Text style={styles.text}>{props.item.fullName}</Text>
-                <Text style={styles.email}>{props.item.email}</Text>
-            </View>
-        </TouchableOpacity>
+        <TouchableHighlight
+            style={theme.styles.itemContainerPad8Row}
+            onPress={onPressItem}
+            underlayColor={theme.colors.highlightColor}
+        >
+            <>
+                <View style={theme.styles.containerPad4}>
+                    <Image
+                        source={{ uri: props.item.avatar }}
+                        style={theme.styles.avatarImage}
+                    />
+                </View>
+                <View style={theme.styles.containerPad4Center}>
+                    <Text style={theme.styles.text}>{props.item.fullName}</Text>
+                    <Text style={theme.styles.grayText}>{props.item.email}</Text>
+                </View>
+            </>
+        </TouchableHighlight>
     );
 };
 
 export default ClientItem;
-
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        width: '100%',
-        padding: 8,
-    },
-    avatarContainer: {
-        padding: 4,
-    },
-    avatarImage: {
-        overflow: 'hidden',
-        width: 64,
-        height: 64,
-        borderRadius: 32,
-    },
-    textContainer: {
-        padding: 4,
-        marginLeft: 4,
-        justifyContent: 'center',
-    },
-    text: {
-        fontSize: 16,
-        color: 'black',
-        lineHeight: 26,
-    },
-    email: {
-        fontSize: 14,
-        color: 'gray',
-        lineHeight: 20,
-    },
-});

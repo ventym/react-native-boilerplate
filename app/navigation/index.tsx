@@ -1,5 +1,4 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
+import React, { useContext } from 'react';
 import { NavigationNativeContainer } from '@react-navigation/native';
 import { createStackNavigator, Header } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -7,6 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import { useTranslation } from 'react-i18next';
 import { ParamList } from 'app/navigation/types';
+import { ThemeContext } from 'app/theme';
 import AppMessageLayout from 'app/components/AppMessageLayout';
 
 import ClientListScreen from 'app/screens/ClientList';
@@ -17,23 +17,18 @@ import NasaPhotoListScreen from 'app/screens/Nasa/PhotoList';
 import NasaPhotoDetailsSwipeableListScreen from 'app/screens/Nasa/PhotoDetailsSwipeableList';
 import SettingsScreen from 'app/screens/Settings';
 
-const styles = StyleSheet.create({
-    tabLabel: {
-        fontSize: 14,
-    },
-    headerTitle: {
-        fontSize: 16,
-    },
-});
-
 const ClientStack = createStackNavigator<ParamList>();
 const ClientStackScreen: React.FC = () => {
     const { t } = useTranslation();
+    const theme = useContext(ThemeContext);
 
     return (
         <ClientStack.Navigator
+            initialRouteName='ClientListScreen'
             screenOptions={{
-                headerTitleStyle: styles.headerTitle,
+                headerTitleStyle: theme.styles.headerTitle,
+                headerStyle: theme.styles.header,
+                headerTintColor: theme.colors.activeTintColor,
             }}
         >
             <ClientStack.Screen
@@ -57,12 +52,15 @@ const ClientStackScreen: React.FC = () => {
 const NasaStack = createStackNavigator<ParamList>();
 const NasaStackScreen: React.FC = () => {
     const { t } = useTranslation();
+    const theme = useContext(ThemeContext);
 
     return (
         <NasaStack.Navigator
             initialRouteName='NasaRoverListScreen'
             screenOptions={{
-                headerTitleStyle: styles.headerTitle,
+                headerTitleStyle: theme.styles.headerTitle,
+                headerStyle: theme.styles.header,
+                headerTintColor: theme.colors.activeTintColor,
             }}
         >
             <NasaStack.Screen
@@ -101,11 +99,15 @@ const NasaStackScreen: React.FC = () => {
 const SettingsStack = createStackNavigator<ParamList>();
 const SettingsStackScreen: React.FC = () => {
     const { t } = useTranslation();
+    const theme = useContext(ThemeContext);
 
     return (
         <SettingsStack.Navigator
+            initialRouteName='SettingsScreen'
             screenOptions={{
-                headerTitleStyle: styles.headerTitle,
+                headerTitleStyle: theme.styles.headerTitle,
+                headerStyle: theme.styles.header,
+                headerTintColor: theme.colors.activeTintColor,
             }}
         >
             <SettingsStack.Screen
@@ -122,11 +124,16 @@ const SettingsStackScreen: React.FC = () => {
 const MainTab = createBottomTabNavigator();
 const MainTabScreen: React.FC = () => {
     const { t } = useTranslation();
+    const theme = useContext(ThemeContext);
 
     return (
         <MainTab.Navigator
             tabBarOptions={{
-                labelStyle: styles.tabLabel,
+                labelStyle: theme.styles.tabLabel,
+                tabStyle: theme.styles.tab,
+                activeTintColor: theme.colors.activeTintColor,
+                inactiveTintColor: theme.colors.inactiveTintColor,
+                style: theme.styles.tab,
             }}
         >
             <MainTab.Screen

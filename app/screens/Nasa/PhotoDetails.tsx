@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
     StyleSheet,
     View,
@@ -8,6 +8,7 @@ import {
 
 import { INasaPhoto } from 'app/state/types';
 import { useTranslation } from 'react-i18next';
+import { ThemeContext } from 'app/theme';
 
 interface IProps {
     photo: INasaPhoto;
@@ -15,21 +16,25 @@ interface IProps {
 
 const PhotoDetails: React.FC<IProps> = (props) => {
     const { t } = useTranslation('NasaPhotoDetailsScreen');
+    const theme = useContext(ThemeContext);
 
     return (
-        <View style={styles.screenContainer}>
-            <View style={styles.textContainer}>
-                <Text style={styles.text}>{t('photoId')}: {props.photo.id}</Text>
-                <Text style={styles.text}>{t('roverName')}: {props.photo.roverName}</Text>
-                <Text style={styles.text}>{t('cameraFullName')}: {props.photo.cameraFullName}</Text>
-                <Text style={styles.text}>{t('earthDate')}: {props.photo.earthDate}</Text>
-                <Text style={styles.text}>{t('sol')}: {props.photo.sol.toString()}</Text>
+        <View style={theme.styles.screenContainer}>
+            <View style={styles.descriptionContainer}>
+                <Text style={theme.styles.text}>{t('photoId')}: {props.photo.id}</Text>
+                <Text style={theme.styles.text}>{t('roverName')}: {props.photo.roverName}</Text>
+                <Text style={theme.styles.text}>{t('cameraFullName')}: {props.photo.cameraFullName}</Text>
+                <Text style={theme.styles.text}>{t('earthDate')}: {props.photo.earthDate}</Text>
+                <Text style={theme.styles.text}>{t('sol')}: {props.photo.sol.toString()}</Text>
             </View>
             <View style={styles.photoContainer}>
                 <Image
                     style={styles.photoImage}
                     source={{ uri: props.photo.imgSrc }}
                     resizeMode='contain'
+                    resizeMethod='resize'
+                    // defaultSource={require('app/images/image.png')}
+                    // loadingIndicatorSource={require('app/images/image.png')}
                 />
             </View>
         </View>
@@ -39,16 +44,8 @@ const PhotoDetails: React.FC<IProps> = (props) => {
 export default PhotoDetails;
 
 const styles = StyleSheet.create({
-    screenContainer: {
-        flex: 1,
-    },
-    textContainer: {
+    descriptionContainer: {
         padding: 8,
-    },
-    text: {
-        fontSize: 16,
-        color: 'black',
-        lineHeight: 26,
     },
     photoContainer: {
         flex: 1,

@@ -16,7 +16,7 @@ const initialState: INasaState = {
     isLoading: false,
 };
 
-const nasaPhoto = reducerWithInitialState(initialState)
+const nasa = reducerWithInitialState(initialState)
 .case(actions.nasa.fetchDataStarted, produce((draft: INasaState) => {
     draft.isLoading = true;
 }))
@@ -41,4 +41,4 @@ const nasaPhoto = reducerWithInitialState(initialState)
 }))
 .build();
 
-export default nasaPhoto;
+export default nasa;

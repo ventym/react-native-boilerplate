@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
-    StyleSheet,
     Text,
 } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
 import { INasaCamera } from 'app/state/types';
+import { ThemeContext } from 'app/theme';
 
 interface IProps {
     camera: INasaCamera;
@@ -13,27 +13,20 @@ interface IProps {
 }
 
 const CameraItem: React.FC<IProps> = (props) => {
+    const theme = useContext(ThemeContext);
+
     return (
-        <TouchableOpacity style={styles.container} onPress={props.onPress}>
-            <Text style={styles.text}>{props.camera.fullName}</Text>
-            <Text style={styles.subtext}>{props.camera.roverName}</Text>
-        </TouchableOpacity>
+        <TouchableHighlight
+            style={theme.styles.itemContainerPad8}
+            onPress={props.onPress}
+            underlayColor={theme.colors.highlightColor}
+        >
+            <>
+                <Text style={theme.styles.text}>{props.camera.fullName}</Text>
+                <Text style={theme.styles.grayText}>{props.camera.roverName}</Text>
+            </>
+        </TouchableHighlight>
     );
 };
 
 export default CameraItem;
-
-const styles = StyleSheet.create({
-    container: {
-        width: '100%',
-        padding: 8,
-    },
-    text: {
-        fontSize: 16,
-        color: 'black',
-    },
-    subtext: {
-        fontSize: 16,
-        color: 'gray',
-    },
-});

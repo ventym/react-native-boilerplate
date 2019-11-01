@@ -1,24 +1,18 @@
-import React from 'react';
-import { StyleSheet, View, ActivityIndicator } from 'react-native';
+import React, { useContext } from 'react';
+import { View, ActivityIndicator } from 'react-native';
+import { ThemeContext } from 'app/theme';
 
 const LoadingView: React.FC = () => {
+    const theme = useContext(ThemeContext);
+
     return (
-        <View style={styles.screenContainer}>
+        <View style={theme.styles.screenContainerPad8Center}>
             <ActivityIndicator
                 size='large'
-                color='black'
+                color={theme.colors.activityIndicator}
             />
         </View>
     )
 };
 
 export default LoadingView;
-
-const styles = StyleSheet.create({
-    screenContainer: {
-        flex: 1,
-        backgroundColor: 'aliceblue',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-});

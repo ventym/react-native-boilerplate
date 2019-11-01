@@ -1,17 +1,13 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { useContext } from 'react';
+import { View } from 'react-native';
+import { ThemeContext } from 'app/theme';
 
 const EmptyView: React.FC = () => {
+    const theme = useContext(ThemeContext);
+
     return (
-        <View style={styles.screenContainer}/>
+        <View style={theme.styles.screenContainer}/>
     )
 };
 
 export default EmptyView;
-
-const styles = StyleSheet.create({
-    screenContainer: {
-        flex: 1,
-        backgroundColor: 'aliceblue',
-    },
-});

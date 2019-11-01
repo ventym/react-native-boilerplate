@@ -1,15 +1,11 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { useContext } from 'react';
+import { View } from 'react-native';
+import { ThemeContext } from 'app/theme';
 
-const ItemSeparator: React.FC = () => <View style={styles.itemSeparator}/>;
+const ItemSeparator: React.FC = () => {
+    const theme = useContext(ThemeContext);
+
+    return <View style={theme.styles.itemSeparator}/>;
+};
 
 export default ItemSeparator;
-
-const styles = StyleSheet.create({
-    itemSeparator: {
-        width: '100%',
-        height: StyleSheet.hairlineWidth,
-        backgroundColor: 'silver',
-        marginLeft: 12,
-    },
-});

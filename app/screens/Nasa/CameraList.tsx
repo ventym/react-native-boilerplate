@@ -1,7 +1,5 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import {
-    StyleSheet,
-    View,
     RefreshControl,
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
@@ -16,6 +14,7 @@ import thunks from 'app/thunks';
 import ItemSeparator from 'app/components/ItemSeparator';
 import CameraListItem from './CameraListItem';
 import NoDataView from 'app/components/NoDataView';
+import { ThemeContext } from 'app/theme';
 
 const NasaCameraListScreen: React.FC = () => {
     const isLoading = useSelector<IState, boolean>(state => state.nasa.isLoading);
@@ -35,34 +34,26 @@ const NasaCameraListScreen: React.FC = () => {
         });
     }, [navigation]);
 
+    const theme = useContext(ThemeContext);
+
     return (
-        <View style={styles.screenContainer}>
-            <FlatList
-                style={styles.listContainer}
-                contentContainerStyle={cameraList.length === 0 && styles.noScrollContentContainer}
-                data={cameraList}
-                // FIXME: renderItem={CameraListItem} - после того как FlatList станет нормально работать с FC
-                renderItem={({ item }) => <CameraListItem camera={item} onPress={onPressCamera(item)}/>}
-                keyExtractor={item => item.id}
-                ItemSeparatorComponent={ItemSeparator}
-                ListEmptyComponent={NoDataView}
-                refreshControl={<RefreshControl refreshing={isLoading} onRefresh={refetchNasaData}/>}
-            />
-        </View>
+        <FlatList
+            style={theme.styles.screenContainer}
+            contentContainerStyle={cameraList.length === 0 && theme.styles.flex1pad8}
+            data={cameraList}
+            // FIXME: renderItem={CameraListItem} - после того как FlatList станет нормально работать с FC
+            renderItem={({ item }) => (
+                <CameraListItem
+                    camera={item}
+                    onPress={onPressCamera(item)}
+                />
+            )}
+            keyExtractor={item => item.id}
+            ItemSeparatorComponent={ItemSeparator}
+            ListEmptyComponent={NoDataView}
+            refreshControl={<RefreshControl refreshing={isLoading} onRefresh={refetchNasaData}/>}
+        />
     );
 };
 
 export default NasaCameraListScreen;
-
-const styles = StyleSheet.create({
-    screenContainer: {
-        flex: 1,
-        backgroundColor: 'aliceblue',
-    },
-    listContainer: {
-        flex: 1,
-    },
-    noScrollContentContainer: {
-        flex: 1,
-    },
-});

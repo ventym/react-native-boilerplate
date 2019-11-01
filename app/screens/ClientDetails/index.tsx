@@ -1,7 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
-    StyleSheet,
-    // View,
     Text,
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -12,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { IState, IClient } from 'app/state/types';
 import { ParamList } from 'app/navigation/types';
 import NoDataView from 'app/components/NoDataView';
+import { ThemeContext } from 'app/theme';
 
 const ClientDetailsScreen: React.FC = () => {
     const route = useRoute<RouteProp<ParamList, 'ClientDetailsScreen'>>();
@@ -21,32 +20,20 @@ const ClientDetailsScreen: React.FC = () => {
 
     const { t } = useTranslation('SettingsScreen');
 
+    const theme = useContext(ThemeContext);
+
     if (!client) {
         return <NoDataView/>;
     }
 
     return (
         <ScrollView
-            style={styles.screenContainer}
-            contentContainerStyle={styles.contentContainer}
+            style={theme.styles.screenContainer}
+            contentContainerStyle={theme.styles.flex1pad8}
         >
-            <Text style={styles.text}>{client.fullName}</Text>
+            <Text style={theme.styles.text}>{client.fullName}</Text>
         </ScrollView>
     );
 };
 
 export default ClientDetailsScreen;
-
-const styles = StyleSheet.create({
-    screenContainer: {
-        flex: 1,
-        backgroundColor: 'aliceblue',
-    },
-    contentContainer: {
-        padding: 8,
-    },
-    text: {
-        fontSize: 16,
-        color: 'black',
-    },
-});

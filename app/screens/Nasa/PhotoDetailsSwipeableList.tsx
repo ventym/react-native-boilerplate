@@ -1,11 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useContext } from 'react';
 import {
-    StyleSheet,
-    View,
 } from 'react-native';
 import { useSelector } from 'react-redux';
 import { useRoute, RouteProp } from '@react-navigation/core';
-import Swiper from 'react-native-swiper';
+import ViewPager from '@react-native-community/viewpager';
 
 import {
     IState,
@@ -13,6 +11,7 @@ import {
 } from 'app/state/types';
 import { ParamList } from 'app/navigation/types';
 import PhotoDetails from './PhotoDetails';
+import { ThemeContext } from 'app/theme';
 
 const NasaPhotoDetailsSwipeableListScreen: React.FC = () => {
     const route = useRoute<RouteProp<ParamList, 'NasaPhotoDetailsSwipeableListScreen'>>();
@@ -28,30 +27,21 @@ const NasaPhotoDetailsSwipeableListScreen: React.FC = () => {
         return [];
     }, [photoList, filterBy, filterId]);
 
+    const theme = useContext(ThemeContext);
+
     return (
-        <View style={styles.screenContainer}>
-            <Swiper
-                showsPagination={false}
-                showsButtons={false}
-                autoplay={false}
-                index={initialIndex}
-            >
-                {filteredPhotoList.map(photo => (
-                    <PhotoDetails
-                        key={photo.id}
-                        photo={photo}
-                    />
-                ))}
-            </Swiper>
-        </View>
+        <ViewPager
+            style={theme.styles.screenContainer}
+            initialPage={initialIndex}
+        >
+            {filteredPhotoList.map(photo => (
+                <PhotoDetails
+                    key={photo.id}
+                    photo={photo}
+                />
+            ))}
+        </ViewPager>
     );
 };
 
 export default NasaPhotoDetailsSwipeableListScreen;
-
-const styles = StyleSheet.create({
-    screenContainer: {
-        flex: 1,
-        backgroundColor: 'aliceblue',
-    },
-});

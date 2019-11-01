@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import ThemeProvider from 'app/theme';
 import thunks from 'app/thunks';
 import buildStore from 'app/state';
 import AppNavigation from 'app/navigation';
@@ -16,9 +17,11 @@ const store = buildStore((dispatch) => {
 const App: React.FC = () => {
     return (
         <ReduxProvider store={store}>
-            <SafeAreaProvider>
-                <AppNavigation/>
-            </SafeAreaProvider>
+            <ThemeProvider>
+                <SafeAreaProvider>
+                    <AppNavigation/>
+                </SafeAreaProvider>
+            </ThemeProvider>
         </ReduxProvider>
     );
 };
