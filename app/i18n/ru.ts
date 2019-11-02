@@ -21,6 +21,9 @@ export default {
         payment: 'Payment:',
         comment: 'Comment:',
     },
+    NasaTabScreen: {
+        screenTitle: 'НАСА',
+    },
     NasaCameraListScreen: {
         screenTitle: 'Камеры',
     },
@@ -38,12 +41,12 @@ export default {
         screenTitle: 'Настройки',
         changeLanguage: 'Изменить язык приложения',
         changeTheme: 'Изменить тему приложения',
-        // generateRandomAppMessage: 'Generate random message',
+        generateRandomAppMessage: 'Создать случайное сообщение',
     },
     // TEST
-    // randomAppMessage: {
-    //     'INFO': 'No internet',
-    //     'WARN': 'Attention! Setting values ​​below the limit disables the calculation of weighted average deviation values',
-    //     'ERROR': 'Failed to load client list',
-    // },
+    randomAppMessage: {
+        'INFO': 'Отсутствует подключение к интернету',
+        'WARN': 'Внимание! Установка значений ниже лимита отключает расчет средневзвешенных значений отклонения',
+        'ERROR': 'Не удалось загрузить список клиентов',
+    },
 };

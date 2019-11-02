@@ -16,11 +16,15 @@ const SettingsScreen: React.FC = () => {
     const dispatch = useDispatch();
     const changeLanguage = useCallback(() => {
         dispatch(thunks.changeLanguage());
-    }, []);
+    }, [dispatch]);
 
     const changeTheme = useCallback(() => {
         dispatch(actions.settings.toggleTheme());
-    }, []);
+    }, [dispatch]);
+
+    const generateRandomAppMessage = useCallback(() => {
+        dispatch(thunks.generateRandomAppMessage());
+    }, [dispatch]);
 
     const theme = useContext(ThemeContext);
 
@@ -29,12 +33,14 @@ const SettingsScreen: React.FC = () => {
             style={theme.styles.screenContainer}
             contentContainerStyle={theme.styles.flex1pad8}
         >
-            {/* <View style={{ height: 300 }}/> */}
             <TouchableOpacity onPress={changeLanguage} style={{ paddingVertical: 8 }}>
                 <Text style={theme.styles.link}>{t('changeLanguage')}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={changeTheme} style={{ paddingVertical: 8 }}>
                 <Text style={theme.styles.link}>{t('changeTheme')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={generateRandomAppMessage} style={{ paddingVertical: 8 }}>
+                <Text style={theme.styles.link}>{t('generateRandomAppMessage')}</Text>
             </TouchableOpacity>
         </ScrollView>
     );

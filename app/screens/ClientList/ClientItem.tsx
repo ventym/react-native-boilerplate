@@ -11,15 +11,18 @@ import { IClient } from 'app/state/types';
 import { ThemeContext } from 'app/theme';
 
 interface IProps {
-    item: IClient;
+    client: IClient;
 }
 
 const ClientItem: React.FC<IProps> = (props) => {
     const navigation = useNavigation();
 
     const onPressItem = useCallback(() => {
-        navigation.navigate('ClientDetailsScreen', { id: props.item.id });
-    }, [navigation, props.item.id]);
+        navigation.navigate('ClientDetailsScreen', {
+            id: props.client.id,
+            title: props.client.fullName,
+        });
+    }, [navigation, props.client.id, props.client.fullName]);
 
     const theme = useContext(ThemeContext);
 
@@ -32,13 +35,13 @@ const ClientItem: React.FC<IProps> = (props) => {
             <>
                 <View style={theme.styles.containerPad4}>
                     <Image
-                        source={{ uri: props.item.avatar }}
+                        source={{ uri: props.client.avatar }}
                         style={theme.styles.avatarImage}
                     />
                 </View>
                 <View style={theme.styles.containerPad4Center}>
-                    <Text style={theme.styles.text}>{props.item.fullName}</Text>
-                    <Text style={theme.styles.grayText}>{props.item.email}</Text>
+                    <Text style={theme.styles.text}>{props.client.fullName}</Text>
+                    <Text style={theme.styles.grayText}>{props.client.email}</Text>
                 </View>
             </>
         </TouchableHighlight>

@@ -23,7 +23,7 @@ const NasaRoverListScreen: React.FC = () => {
     const dispatch = useDispatch();
     const refetchNasaData = useCallback(() => {
         dispatch(thunks.fetchNasaData());
-    }, []);
+    }, [dispatch]);
 
     const navigation = useNavigation();
     const onPressRover = useCallback((rover: INasaRover) => () => {

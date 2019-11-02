@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { NavigationNativeContainer } from '@react-navigation/native';
 import { createStackNavigator, Header } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import { useTranslation } from 'react-i18next';
@@ -29,6 +30,7 @@ const ClientStackScreen: React.FC = () => {
                 headerTitleStyle: theme.styles.headerTitle,
                 headerStyle: theme.styles.header,
                 headerTintColor: theme.colors.activeTintColor,
+                headerBackTitleVisible: false,
             }}
         >
             <ClientStack.Screen
@@ -41,11 +43,44 @@ const ClientStackScreen: React.FC = () => {
             <ClientStack.Screen
                 name='ClientDetailsScreen'
                 component={ClientDetailsScreen}
-                options={{
-                    title: t('ClientDetailsScreen:screenTitle'),
-                }}
+                options={(props) => ({
+                    title: props.route.params.title,
+                })}
             />
         </ClientStack.Navigator>
+    );
+};
+
+const NasaTab = createMaterialTopTabNavigator();
+const NasaTabScreen: React.FC = () => {
+    const { t } = useTranslation();
+    const theme = useContext(ThemeContext);
+    return (
+        <NasaTab.Navigator
+            initialRouteName='NasaRoverListScreen'
+            tabBarOptions={{
+                labelStyle: theme.styles.tabLabel,
+                tabStyle: theme.styles.tab,
+                activeTintColor: theme.colors.activeTintColor,
+                inactiveTintColor: theme.colors.inactiveTintColor,
+                style: theme.styles.tab,
+            }}
+        >
+            <NasaTab.Screen
+                name='NasaRoverListScreen'
+                component={NasaRoverListScreen}
+                options={{
+                    title: t('NasaRoverListScreen:screenTitle'),
+                }}
+            />
+            <NasaTab.Screen
+                name='NasaCameraListScreen'
+                component={NasaCameraListScreen}
+                options={{
+                    title: t('NasaCameraListScreen:screenTitle'),
+                }}
+            />
+        </NasaTab.Navigator>
     );
 };
 
@@ -53,28 +88,21 @@ const NasaStack = createStackNavigator<ParamList>();
 const NasaStackScreen: React.FC = () => {
     const { t } = useTranslation();
     const theme = useContext(ThemeContext);
-
     return (
         <NasaStack.Navigator
-            initialRouteName='NasaRoverListScreen'
+            initialRouteName='NasaTabScreen'
             screenOptions={{
                 headerTitleStyle: theme.styles.headerTitle,
                 headerStyle: theme.styles.header,
                 headerTintColor: theme.colors.activeTintColor,
+                headerBackTitleVisible: false,
             }}
         >
-            <NasaStack.Screen
-                name='NasaRoverListScreen'
-                component={NasaRoverListScreen}
+            <NasaTab.Screen
+                name='NasaTabScreen'
+                component={NasaTabScreen}
                 options={{
-                    title: t('NasaRoverListScreen:screenTitle'),
-                }}
-            />
-            <NasaStack.Screen
-                name='NasaCameraListScreen'
-                component={NasaCameraListScreen}
-                options={{
-                    title: t('NasaCameraListScreen:screenTitle'),
+                    title: t('NasaTabScreen:screenTitle'),
                 }}
             />
             <NasaStack.Screen
@@ -108,6 +136,7 @@ const SettingsStackScreen: React.FC = () => {
                 headerTitleStyle: theme.styles.headerTitle,
                 headerStyle: theme.styles.header,
                 headerTintColor: theme.colors.activeTintColor,
+                headerBackTitleVisible: false,
             }}
         >
             <SettingsStack.Screen
@@ -128,6 +157,7 @@ const MainTabScreen: React.FC = () => {
 
     return (
         <MainTab.Navigator
+            initialRouteName='NasaStackScreen'
             tabBarOptions={{
                 labelStyle: theme.styles.tabLabel,
                 tabStyle: theme.styles.tab,

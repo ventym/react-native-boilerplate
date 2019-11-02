@@ -2,7 +2,9 @@ export type ParamList = {
     'ClientListScreen': undefined;
     'ClientDetailsScreen': {
         id: string;
+        title: string;
     };
+    'NasaTabScreen': undefined;
     'NasaCameraListScreen': undefined;
     'NasaRoverListScreen': undefined;
     'NasaPhotoListScreen': {

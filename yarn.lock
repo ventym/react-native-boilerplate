@@ -966,10 +966,24 @@
     shortid "^2.2.15"
     use-subscription "^1.1.1"
 
+"@react-navigation/material-top-tabs@^5.0.0-alpha.14":
+  version "5.0.0-alpha.14"
+  resolved "https://registry.yarnpkg.com/@react-navigation/material-top-tabs/-/material-top-tabs-5.0.0-alpha.14.tgz#1874eeb29fe5c047dea8c3b9616f8f45dc8c027a"
+  integrity sha512-pgRjsVa8480LZuwaZA8mTd6/fvODWk8rwY8OZwFc9M7W2mg7eaUJIUqIwgHiq0gbRH8v7FR4ZO8fG0WCmkcaGQ==
+  dependencies:
+    "@react-navigation/routers" "^5.0.0-alpha.11"
+
 "@react-navigation/native@^5.0.0-alpha.13":
   version "5.0.0-alpha.13"
   resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-5.0.0-alpha.13.tgz#fd0150bad0f5646724caa11e162588861c3e4a6b"
   integrity sha512-Zn5RkqrY94c/vmlAplvUUjZ6SA5tyN8JTmzSbSV6IlSPvOgF+Tg9J6BTyFq/iO0nrCX2P4EtOZnv7htRGC33wg==
+
+"@react-navigation/routers@^5.0.0-alpha.11":
+  version "5.0.0-alpha.11"
+  resolved "https://registry.yarnpkg.com/@react-navigation/routers/-/routers-5.0.0-alpha.11.tgz#64d76c3ff1a8a738ed8ca9e26ab8d18e1547355f"
+  integrity sha512-0T+tfxvs8uaXZ00jMZ/WGAh4L+0aEeHWjv6qj8xK3Vdet/3GtAxVhpVSL8dPhWJVXnB1bEo4hZaio+PU5r6XoA==
+  dependencies:
+    shortid "^2.2.15"
 
 "@react-navigation/routers@^5.0.0-alpha.9":
   version "5.0.0-alpha.9"
@@ -5302,6 +5316,11 @@ react-native-screens@^2.0.0-alpha.6:
   integrity sha512-5m59glvDDzQvzdBymIn6GfCnzk/9kaxkREEKLVMdANtZlqIuH3Jbgoc+56pcX5LVSZCMaSozPAQBcLaMWO2JUA==
   dependencies:
     debounce "^1.2.0"
+
+react-native-tab-view@^2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-2.10.0.tgz#5e249e5650502010013449ffd4e5edc18a95364b"
+  integrity sha512-qgexVz5eO4yaFjdkmn/sURXgVvaBo6pZD/q1eoca96SbPVbaH3WzVhF3bRUfeTHwZkXwznFTpS3JURqIFU8vQA==
 
 react-native-vector-icons@^6.6.0:
   version "6.6.0"

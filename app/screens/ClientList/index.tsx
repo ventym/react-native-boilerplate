@@ -19,7 +19,7 @@ const ClientListScreen: React.FC = () => {
     const dispatch = useDispatch();
     const refetchClientList = useCallback(() => {
         dispatch(thunks.fetchClientList());
-    }, []);
+    }, [dispatch]);
 
     const theme = useContext(ThemeContext);
 
@@ -29,7 +29,7 @@ const ClientListScreen: React.FC = () => {
             contentContainerStyle={clientList.length === 0 && theme.styles.flex1pad8}
             data={clientList}
             // FIXME: renderItem={ClientItem} - после того как FlatList станет нормально работать с FC
-            renderItem={({ item }) => <ClientItem item={item}/>}
+            renderItem={({ item }) => <ClientItem client={item}/>}
             keyExtractor={item => item.id}
             ItemSeparatorComponent={ItemSeparator}
             ListEmptyComponent={NoDataView}
