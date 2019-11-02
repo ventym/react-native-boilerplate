@@ -29,4 +29,4 @@ const CameraItem: React.FC<IProps> = (props) => {
     );
 };
 
-export default CameraItem;
+export default React.memo(CameraItem);

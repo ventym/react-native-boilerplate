@@ -32,4 +32,4 @@ const PhotoItem: React.FC<IProps> = (props) => {
     );
 };
 
-export default PhotoItem;
+export default React.memo(PhotoItem);

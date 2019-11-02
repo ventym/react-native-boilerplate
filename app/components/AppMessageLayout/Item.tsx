@@ -47,11 +47,11 @@ const AppMessageItem: React.FC<IProps> = (props) => {
 
     const theme = useContext(ThemeContext);
 
-    const backgroundColor = theme.colors.appMessageBackground[props.item.type];
     const iconName = MESSAGE_ICON[props.item.type];
     const containerStyle = useMemo(() => {
+        const backgroundColor = theme.colors.appMessageBackground[props.item.type];
         return StyleSheet.flatten([styles.container, { backgroundColor }]);
-    }, [styles.container, backgroundColor]);
+    }, [styles.container, theme.colors.appMessageBackground, props.item.type]);
 
     return (
         <TouchableWithoutFeedback

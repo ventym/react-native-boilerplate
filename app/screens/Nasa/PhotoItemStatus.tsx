@@ -20,4 +20,4 @@ const PhotoItemStatus: React.FC<IProps> = (props) => {
     return null;
 };
 
-export default PhotoItemStatus;
+export default React.memo(PhotoItemStatus);

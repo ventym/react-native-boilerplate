@@ -48,4 +48,4 @@ const ClientItem: React.FC<IProps> = (props) => {
     );
 };
 
-export default ClientItem;
+export default React.memo(ClientItem);

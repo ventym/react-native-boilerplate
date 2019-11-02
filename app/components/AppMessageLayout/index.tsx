@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
     StyleSheet,
     View,
@@ -10,17 +10,19 @@ import { useSafeArea } from 'react-native-safe-area-context';
 
 import { IState, IAppMessage } from 'app/state/types';
 import AppMessageItem from './Item';
-import { ThemeContext } from 'app/theme';
 
 const AppMessageLayout: React.FC = (props) => {
     const messageList = useSelector<IState, IAppMessage[]>(state => state.appMessage.list);
     const insets = useSafeArea();
     const headerHeight = 44; // TODO
+    const flatListStyle = useMemo(() => {
+        return StyleSheet.flatten([styles.messageListContainer, { marginTop: insets.top + headerHeight }]);
+    }, [insets.top, headerHeight]);
 
     return (
         <View style={styles.screenContainer}>
             <FlatList
-                style={[styles.messageListContainer, { marginTop: insets.top + headerHeight }]}
+                style={flatListStyle}
                 data={messageList}
                 // FIXME: renderItem={AppMessageItem} - после того как FlatList станет нормально работать с FC
                 renderItem={({item}) => (
@@ -29,7 +31,7 @@ const AppMessageLayout: React.FC = (props) => {
                     />
                 )}
                 keyExtractor={item => item.id}
-                ItemSeparatorComponent={ItemSeparator}
+                ItemSeparatorComponent={MessageItemSeparator}
                 bounces={false}
             />
             {props.children}
@@ -39,7 +41,7 @@ const AppMessageLayout: React.FC = (props) => {
 
 export default AppMessageLayout;
 
-const ItemSeparator: React.FC = () => <View style={styles.itemsSeparator}/>
+const MessageItemSeparator: React.FC = () => <View style={styles.itemsSeparator}/>
 
 const styles = StyleSheet.create({
     screenContainer: {

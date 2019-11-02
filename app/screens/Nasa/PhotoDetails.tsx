@@ -41,7 +41,7 @@ const PhotoDetails: React.FC<IProps> = (props) => {
     );
 };
 
-export default PhotoDetails;
+export default React.memo(PhotoDetails);
 
 const styles = StyleSheet.create({
     descriptionContainer: {

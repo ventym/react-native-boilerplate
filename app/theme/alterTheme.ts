@@ -3,7 +3,7 @@ import { StyleSheet, ViewStyle, TextStyle, ImageStyle } from 'react-native';
 import { IAppMessageType } from 'app/state/types';
 
 const appMessageBackground: Record<IAppMessageType, string> = {
-    'INFO': 'darkcyan',
+    'INFO': 'darkseagreen', // 'darkcyan',
     'WARN': 'goldenrod',
     'ERROR': 'tomato',
 };
@@ -83,7 +83,7 @@ const alterTheme = {
         },
         link: {
             fontSize: 16,
-            color: 'yellow',
+            color: 'gold',
         },
         appMessageText: {
             fontSize: 16,

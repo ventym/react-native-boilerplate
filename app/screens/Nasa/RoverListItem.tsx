@@ -29,4 +29,4 @@ const RoverItem: React.FC<IProps> = (props) => {
     );
 };
 
-export default RoverItem;
+export default React.memo(RoverItem);
