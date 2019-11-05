@@ -9,6 +9,7 @@ import {
 import { INasaPhoto } from 'app/state/types';
 import { useTranslation } from 'react-i18next';
 import { ThemeContext } from 'app/theme';
+// import images from 'app/images';
 
 interface IProps {
     photo: INasaPhoto;
@@ -33,8 +34,8 @@ const PhotoDetails: React.FC<IProps> = (props) => {
                     source={{ uri: props.photo.imgSrc }}
                     resizeMode='contain'
                     resizeMethod='resize'
-                    // defaultSource={require('app/images/image.png')}
-                    // loadingIndicatorSource={require('app/images/image.png')}
+                    // defaultSource={images.image}
+                    // loadingIndicatorSource={images.image}
                 />
             </View>
         </View>
