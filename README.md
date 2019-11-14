@@ -9,6 +9,7 @@ demo application react-native
 - Internationalization: i18next
 - Themes support
 - HTTP requests: axios, axios-mock-adapter
+- Custom hooks examples (utils/useTimer, utils/useCollapseAnimation)
 
 ## Application architecture diagram
 
