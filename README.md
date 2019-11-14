@@ -10,6 +10,10 @@ demo application react-native
 - Themes support
 - HTTP requests: axios, axios-mock-adapter
 
+## Application architecture diagram
+
+![react-redux-typescript-app-diagram](https://github.com/ventym/react-native-boilerplate/wiki/images/react-redux-typescript-app-scheme.png)
+
 ## Screenshots
 #### List and details:
 
