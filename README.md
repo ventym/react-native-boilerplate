@@ -13,7 +13,7 @@ demo application react-native
 
 ## Application architecture diagram
 
-![react-redux-typescript-architecture](https://github.com/ventym/react-native-boilerplate/wiki/images/react-redux-typescript-architecture.png)
+![react-redux-thunk-arch](https://github.com/ventym/react-native-boilerplate/wiki/images/react-redux-thunk-arch.png)
 
 ## Screenshots
 #### List and details:
