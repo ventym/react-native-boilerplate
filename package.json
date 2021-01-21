@@ -20,7 +20,7 @@
     "axios-mock-adapter": "^1.17.0",
     "cuid": "^2.1.6",
     "i18next": "^19.0.0",
-    "immer": "^4.0.2",
+    "immer": "^8.0.1",
     "react": "16.9.0",
     "react-i18next": "^11.0.1",
     "react-native": "0.61.2",
